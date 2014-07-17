@@ -87,8 +87,6 @@ background-color: #FAB937;
 					<li role="presentation" id="default_settings"><a
 						role="menuitem" tabindex="-1"
 						href="<c:url value="/recommendSetting" />">Recommend Settings</a></li>
-					<li role="presentation" id="default_settings"><a
-						role="menuitem" tabindex="-1" href="<c:url value="/category" />">Category</a></li>
 					<li role="presentation" id="default_password"><a
 						role="menuitem" tabindex="-1"
 						href="<c:url value="/profile/changepassword" />">Change

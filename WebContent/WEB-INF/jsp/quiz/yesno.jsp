@@ -8,7 +8,7 @@
 			$("#form").submit();
 		}
 	</script>
-<div style="font-family: arial,meiryo,simsun,sans-serif;font-size: 22px; font-weight:bold; color: gray; margin-bottom:10px;">
+<div class="QuizContent" >
 	<img src="<c:url value='/images/system-help.png' />" alt="●"/> 
 	<c:if test ="${quiz.item.author.id == quiz.author.id }">
 		Do you remember?
@@ -18,7 +18,7 @@
 	</c:if>
 </div>
  <form:hidden path="answer"/>
-<table style=" border: 2px ridge; font-family: arial; font-size: 22px; font-weight: bold">
+<table class="AnswerContent" style=" border: 2px ridge; font-family: arial; font-size: 22px; font-weight: bold">
    <c:if test="${!empty quiz.item.titles}"> 
    <c:url value="/item/${quiz.item.id}" var="itemurl" ></c:url>
        	<c:forEach items="${quiz.item.titles}" var="title">
@@ -70,7 +70,7 @@
      </tr>
      </c:if>
 </table>
-<div style="margin-top:10px; text-align:center">
+<div class="SubmitPanel">
 	<input type="submit" class="btn" value="Yes" onclick="fncAnswer(1);return false;"/>
 	<input type="submit" class="btn" value="No" onclick="fncAnswer(0);return false;"/>
 	<input type="button" class="btn" value="No Good" onclick="return fncPass();"/>

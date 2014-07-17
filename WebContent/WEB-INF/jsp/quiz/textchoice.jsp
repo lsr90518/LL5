@@ -1,28 +1,22 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<div style="font-family: arial,meiryo,simsun,sans-serif;font-size: 22px; font-weight:bold; color: gray; margin-bottom:10px;">
-	<img src="<c:url value='/images/system-help.png' />" alt="●"/>Select the right word <br/><span style="color:black">${quiz.content}</span>?
-</div>
 <c:choose>
 	<c:when test= "${answered}">
-	    <div style="display:block; border: 8px ridge orange; width: 250px; height: 80px;margin-left: 110px; font-family: arial; font-size: 22px; font-weight: bold">
-	   		<a href="<c:url value="/quiz" />" style="TEXT-DECORATION:none">
-	   		<span style="word-break: normal;color:<c:if test='${result}'>green</c:if><c:if test='${!result}'>red</c:if>">
+    <div class="alert <c:if test='${result}'>alert-success</c:if> <c:if test='${!result}'>alert-danger</c:if>">
+    	<div class="NextQuizJudge">
 	   			${comment}
-	   		</span>
-	   		</a>
-	   	</div>
-       	<div style="margin-top: -30px;">
-       		<a href="<c:url value="/quiz" />">
-       			<img src="<c:url value='/images/${faceicon}.png' />" alt="" />
-	       	</a>
-       	</div>
-       	<div style="text-align:center">
-      	<input type="button" class="buttonSubmit" value="More Quiz" onclick="return fncMore();"/> 	
-      	</div>
-     </c:when>
+   		</div>
+   		<div class="NextQuizDiv">
+   			<input type="button" class="buttonSubmit buttonSubmit btn btn-success" value="More Quiz" onclick="return fncMore();"/> 
+   		</div>
+   	</div>
+  	</c:when>
 </c:choose>
-<table style="border-style: none;">
+<div class="QuizContent">
+	<img src="<c:url value='/images/system-help.png' />" alt="●"/>Select the right word <br/><span style="color:black">${quiz.content}</span>?
+</div>
+
+<table class="AnswerContent" style="border-style: none;">
 	<c:forEach items="${quiz.quizChoices}" var="choice" varStatus="status">
 		<ul
 			style="list-style-image:url('<c:url value='/images/icon_arrow_2.gif' />');margin: 3px 20px; line-height: 30px;font-family: arial,meiryo,simsun,sans-serif; font-weight:bold; font-size: 18px; overflow: visible; color: green; vertical-align: baseline">
@@ -50,10 +44,11 @@
 </table>
 <c:choose>
 	<c:when test= "${!answered}">
-	    <br/>
+	    <div class="SubmitPanel" >
 		<input type="submit" class="btn" value="Answer" />
 		<input type="submit" class="btn" value="Too Easy" onclick="return fncEasy();"/>
 		<input type="submit" class="btn" value="Too Difficult" onclick="return fncDifficult();"/>
 		<input type="button" class="btn" value="No Good" onclick="return fncPass();"/>
+		</div>
 	</c:when>
 </c:choose>

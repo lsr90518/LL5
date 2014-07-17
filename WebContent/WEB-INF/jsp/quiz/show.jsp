@@ -122,6 +122,69 @@ background-color: #FAB937;
 .pushedTab {
 	color: black;
 }
+
+.contentPanel{
+	background: white;
+	margin: 5px 10px;
+	position: relative;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	-webkit-box-shadow: 0 1px 1px 0 #888;
+	-moz-box-shadow: 0 1px 1px 0 #888;
+	box-shadow: 0 1px 1px 0 #888;
+	margin-bottom:20px;
+}
+
+.QuizContent{
+	font-weight: bolder;
+	font-size: larger;
+	border-bottom: 1px solid #ccc;
+	padding-left: 10px;
+}
+
+.AnswerContent{
+	background-color: #f3f3f3;
+}
+.SubmitPanel{
+	border-top: 1px solid #ccc;
+	padding-top: 5px;
+	text-align: center;
+}
+.SubmitPanel>input{
+	box-shadow:0 1px 3px 0 #888;
+	margin:10px;
+	background-color:#326e99;
+	color:white;
+}
+
+.scoreContent{
+	background-color: #DBDBDB;
+	margin: 1%;
+	border-radius: 5%;
+	text-align: center;
+	padding: 10px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+.scoreSpan{
+	font-size: 56px;
+	color: white;
+	font-weight: bold;
+	margin-bottom: 5px;
+	display: block;
+}
+.scoreTitle{
+	margin: 0;
+	font-weight: bold;
+	color: #8d9aa5;
+	line-height: 1.6;
+}
+.ImageContent{
+	text-align: center;
+}
 </style>
   <header class="navbar navbar-default navbar-fixed-top topNav" role="navigation">
 				  <div class="container topNav">
@@ -151,113 +214,118 @@ background-color: #FAB937;
       		 <div id="Container">
                  <div id="Contents">
                    	<div id="ContentsContainer">
-                      	<div id="LayoutA" class="Layout">
-                            <div id="Left">
-                      		 <c:if test="${!empty quiz}">
-                      		      <c:if test="${quiz.questionType.id!=2}">
-                                <div id="memberImageBox_30" class="parts memberImageBox">
-	                                    <p class="photo">
-	                                        <a id="itemImage" class="zoom" href="#itemImageZoom">
-	                                            <c:choose>
-	                                                <c:when test="${empty quiz.item.image}">
-	                                                    <img width="240px" alt="" src="<c:url value="/images/no_image.gif" />" />
-	                                                </c:when>
-	                                                <c:otherwise>
-	                                                    <img alt="" src="${staticserverUrl}/${projectName}/${quiz.item.image.id}_320x240.png" width="240px" />
-	                                                </c:otherwise>
-	                                            </c:choose>
-	                                        </a>
-	                                    </p>
-	                                    <div id="itemImageZoom">
-	                                        <c:choose>
-	                                            <c:when test="${empty quiz.item.image}">
-	                                                <img width="240px" alt="" src="<c:url value="/images/no_image.gif" />" />
-	                                            </c:when>
-	                                            <c:otherwise>
-	                                                <img alt="" src="${staticserverUrl}/${projectName}/${quiz.item.image.id}_800x600.png" />
-	                                            </c:otherwise>
-	                                        </c:choose>
-	                                    </div><!-- itemImageZoom -->
-	                                    <p class="text"></p>
-	                                    <div class="moreInfo">
-	                                        <ul class="moreInfo">
-	                                            <li><a class="zoom" href="#itemImageZoom">もっと写真を見る</a></li>
-	                                        </ul>
-	                                    </div><!-- moreInfo -->
-									</div><!-- memberImageBox_30 -->
+					<div id="LayoutA" class="Layout">
+					
+					<div id="ImageContent" style="text-align: center;">
+	                      		 <c:if test="${!empty quiz}">
+	                      		      <c:if test="${quiz.questionType.id!=2}">
+	                                <div id="memberImageBox_30" class="parts memberImageBox">
+		                                    <p class="photo">
+		                                        <a id="itemImage" class="zoom" data-toggle="modal" data-target="#itemImageZoom">
+		                                            <c:choose>
+		                                                <c:when test="${empty quiz.item.image}">
+		                                                </c:when>
+		                                                <c:otherwise>
+		                                                    <img style="box-shadow:0px 1px 3px 0px #888" alt="" src="${staticserverUrl}/${projectName}/${quiz.item.image.id}_320x240.png" width="240px" />
+		                                                </c:otherwise>
+		                                            </c:choose>
+		                                        </a>
+		                                    </p>
+		                                    <div id="itemImageZoom" class="modal fade" tabindex="-1" role="dialog"
+							aria-labelledby="myModalLabel" aria-hidden="true">
+		                                        <c:choose>
+		                                            <c:when test="${empty quiz.item.image}">
+		                                            </c:when>
+		                                            <c:otherwise>
+		                                                <img alt="" src="${staticserverUrl}/${projectName}/${quiz.item.image.id}_800x600.png" />
+		                                            </c:otherwise>
+		                                        </c:choose>
+		                                    </div><!-- itemImageZoom -->
+										</div><!-- memberImageBox_30 -->
+										</c:if>
+										<c:if test="${!empty quiz.item.itemLat && !empty quiz.item.itemLng && !empty quiz.item.itemZoom}">
+	                                </c:if>
+	                                </c:if>
+	                            </div><!-- Left -->
+					
+					
+						<div class="contentPanel">
+						
+							<div class="dparts homeRecentList">
+								<div class="parts">
+									<c:url value="/quiz" var="url" />
+									<c:if test="${!empty quiz}">
+										<form:form commandName="form" action="${url}" method="post"
+											id="form">
+											<form:hidden path="language" />
+											<form:hidden path="pass" id="pass" />
+											<input name="alarmtype" type="hidden" value="8" />
+											<input type="hidden" name="quizid" value="${quiz.id}"></input>
+											<c:if test="${quiz.questionType.id == 1}">
+												<c:import url="textchoice.jsp" />
+											</c:if>
+											<c:if test="${quiz.questionType.id == 2}">
+												<c:import url="imagechoice.jsp" />
+											</c:if>
+											<c:if test="${quiz.questionType.id == 3}">
+												<c:import url="yesno.jsp" />
+											</c:if>
+										</form:form>
+
+										<br />
 									</c:if>
-									<c:if test="${!empty quiz.item.itemLat && !empty quiz.item.itemLng && !empty quiz.item.itemZoom}">
-	                                <div id="mapbox" class="dparts nineTable">
-                                    <div class="parts">
-                                        <div class="navbar navbar-inner" style="position: static;">
-									<div class="navbar-primary"><h3 style="font-size: 14px; font-weight: bolder; line-height: 150%">Map</h3></div></div>
-                                        <table>
-                                            <tr>
-                                                <td>
-                                                    <div id="map" style="height: 200px;">
-                                                        <img src="http://maps.google.com/maps/api/staticmap?size=260x200&sensor=false&center=${quiz.item.itemLat},${quiz.item.itemLng}&zoom=${quiz.item.itemZoom}&mobile=true&markers=${quiz.item.itemLat},${quiz.item.itemLng}" />
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <c:if test="${!empty quiz.item.place}"><tr><td>Place：${quiz.item.place}</td></tr></c:if>
-                                        </table>
-                                    </div><!-- parts -->
-                                </div><!-- dparts -->
-                                </c:if>
-                                </c:if>
-                            </div><!-- Left -->
-                            <div id="Center">
-                                <div class="dparts homeRecentList">
-                                    <div class="parts">
-                                        <div class="navbar navbar-inner" style="position: static;">
-									<div class="navbar-primary"><h3 style="font-size: 14px; font-weight: bolder; line-height: 150%">Quiz</h3></div></div>
-                                          <c:url value="/quiz" var="url" />
-                                         <c:if test="${!empty quiz}">
-                                          <form:form commandName="form" action="${url}" method="post" id="form">
-                                          	 <form:hidden path="language"/>
-                                          	 <form:hidden path="pass" id="pass"/>
-                                          	 <input name="alarmtype" type="hidden" value="8"/>
-                                             <input type="hidden" name="quizid" value="${quiz.id}"></input>
-                                                <c:if test="${quiz.questionType.id == 1}">
-                                             		 <c:import url="textchoice.jsp" />
-                                                </c:if>	
-                                                <c:if test="${quiz.questionType.id == 2}">
-                                               		<c:import url="imagechoice.jsp" />
-                                                </c:if>
-                                                <c:if test="${quiz.questionType.id == 3}">
-                                               		<c:import url="yesno.jsp" />
-                                                </c:if>
-                                          </form:form>
-                                          <br/>
-                                          <!-- 
-                                          <form:form commandName="form"  action="${url}" method="get">
-	                                          <c:if test= "${answered}">
-                                             <table>
-                                                 <tr class="main-table" >
-                                                     <td width="120" style="text-align:center;">
-                                                     	 <input type="submit" value="More Quizzes" class="buttonSubmit"></input>
-                                                         Learning Language:
-                                                        <form:select path="language" itemLabel="name" itemValue="code" items="${languages}" ></form:select>
-                                                     </td>
-                                             </table>
-                                             </c:if>
-                                         </form:form>
-                                          -->
-                                        </c:if>
-                                   	    <c:if test="${empty quiz}">
-                                   	     <c:import url="noquiz.jsp" />
-                                      </c:if>
-                                     </div> <!-- parts -->
-                                </div><!-- dparts homeRecentList -->
-                            </div><!-- Center -->
-                      	</div><!-- LayoutA -->
-                            <div style="text-align: center;">
-                               <span style="font-family: arial,meiryo,simsun,sans-serif;font-size: 17px; font-weight:bold; ">
-                               			<br/>
-                                      	Today's Score:<br><br/>&nbsp;<font color="green" size="30px">${quizinfos.scores}</font><br/><br/>
-	                                  	Your All Score:<br><br/>&nbsp;<font color="green" size="30px">${quizinfos.allscores}</font>
-	                                  </span>
-	                        </div>          
+									<c:if test="${empty quiz}">
+										<c:import url="noquiz.jsp" />
+									</c:if>
+								</div>
+								<!-- parts -->
+							</div>
+							<!-- dparts homeRecentList -->
+						</div>
+						<!-- Center -->
+					</div>
+					<!-- LayoutA -->
+					
+					
+
+					<!-- 										score										 -->
+                            <div class="contentPanel">
+                                <div class="row">
+                                  <div class="col-xs-2 col-md-2 ">
+								  </div>
+								  <div class="col-xs-4 col-md-4 scoreContent">
+								    <span class="scoreSpan">${quizinfos.scores}</span>
+                            		<span class="scoreTitle">Today's Score</span>
+								  </div>
+								  <div class="col-xs-4 col-md-4 scoreContent">
+								    <span class="scoreSpan">${quizinfos.allscores}</span>
+                            		<span class="scoreTitle">Today's Score</span>
+								  </div>
+								  <div class="col-xs-2 col-md-2 ">
+								  </div>
+								</div>
+	                        </div>   
+	                        <!-- 										score										 -->
+	                        
+	                        
+	                        
+	                        
+	                        <!-- 										map											 -->
+					<div class="contentPanel">
+						<div id="map" style="height: 90px;text-align:center">
+							<img
+								src="http://maps.google.com/maps/api/staticmap?size=400x90&sensor=false&center=${quiz.item.itemLat},${quiz.item.itemLng}&zoom=${quiz.item.itemZoom}&mobile=true&markers=${quiz.item.itemLat},${quiz.item.itemLng}" />
+						</div>
+
+						<c:if test="${!empty quiz.item.place}">
+							<tr>
+								<td>Place：${quiz.item.place}</td>
+							</tr>
+						</c:if>
+
+					</div>
+					<!-- contentPanel -->
+					<!-- 										map											 -->       
                     </div><!-- ContentsContainer -->
 				 </div><!-- Contents -->
             </div><!-- Container -->

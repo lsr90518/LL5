@@ -13,29 +13,27 @@
     </script>
     <link rel="stylesheet" type="text/css" media="screen" href="${baseURL}/js/jquery/stars/jquery.ui.stars.min.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="${baseURL}/js/mediaelement/mediaelementplayer.min.css" />
-<div style="font-family: arial,meiryo,simsun,sans-serif;font-size: 22px;  word-wrap: break-word;  word-break: normal; font-weight:bold; color: gray; margin-bottom:10px;">
-	<img src="<c:url value='/images/system-help.png' />" alt="●"/>Which image can be linked to <br/>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:black">${quiz.content}</span>?
-</div>
+    
 <c:choose>
 	<c:when test= "${answered}">
-    <div style="display:block; border: 8px ridge orange; width: 250px; height: 80px;margin-left: 110px; font-family: arial; font-size: 22px; font-weight: bold;">
-    	<a href="<c:url value="/quiz" />" style="TEXT-DECORATION:none">
-   		<span style="word-break: normal;color:<c:if test='${result}'>green</c:if><c:if test='${!result}'>red</c:if>">
-   			${comment}
-   		</span>
-   		</a>
+    <div class="alert <c:if test='${result}'>alert-success</c:if> <c:if test='${!result}'>alert-danger</c:if>">
+    	<div class="NextQuizJudge">
+	   			${comment}
+   		</div>
+   		<div class="NextQuizDiv">
+   			<input type="button" class="buttonSubmit buttonSubmit btn btn-success" value="More Quiz" onclick="return fncMore();"/> 
+   		</div>
    	</div>
-       	<div style="margin-top: -30px;">
-       		<a href="<c:url value="/quiz" />" >
-       			<img src="<c:url value='/images/${faceicon}.png' />" alt="" />
-       		</a>
-       	</div>
-        <div style="text-align:center">
-      	<input type="button" class="buttonSubmit" value="More Quiz" onclick="return fncMore();"/> 	
-      	</div>
   	</c:when>
 </c:choose>
-<table style="border-style: none;">
+
+<div class="QuizContent">
+	<img src="<c:url value='/images/system-help.png' />" alt="●"/>Which image can be linked to <br/>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:black">${quiz.content}</span>?
+</div>
+
+
+
+<table class="AnswerContent" style="border-style: none;">
 	<c:forEach items="${quiz.quizChoices}" var="choice" varStatus="status">
 		<c:choose>
 			<c:when test="${!answered}">
@@ -148,7 +146,7 @@
 </table>
 <c:choose>
 	<c:when test= "${!answered}">
-		<div style="margin-top:30px;text-align:center">
+		<div class="SubmitPanel" >
 		<input type="submit" class="btn" value="Answer"/>
 		<input type="submit" class="btn" value="Too Easy" onclick="return fncEasy();"/>
 		<input type="submit" class="btn" value="Too Difficult" onclick="return fncDifficult();"/>

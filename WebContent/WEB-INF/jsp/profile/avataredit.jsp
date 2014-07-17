@@ -81,8 +81,6 @@ background-color: #FAB937;
 					<li role="presentation" id="default_settings"><a
 						role="menuitem" tabindex="-1"
 						href="<c:url value="/recommendSetting" />">Recommend Settings</a></li>
-					<li role="presentation" id="default_settings"><a
-						role="menuitem" tabindex="-1" href="<c:url value="/category" />">Category</a></li>
 					<li role="presentation" id="default_password"><a
 						role="menuitem" tabindex="-1"
 						href="<c:url value="/profile/changepassword" />">Change
@@ -182,3 +180,43 @@ background-color: #FAB937;
     </nav>
     </body>
 </html>
+
+
+
+<c:url value="/profile/changepassword" var="profileEditFormUrl" />
+                             <form:form modelAttribute="form" action="${profileEditFormUrl}" method="post">
+                                 <div id="Center" class="parts">
+                                       <div class="partsHeading"><h3>Change password</h3></div>
+                                 <input type="hidden" name="userid" value="${user.id}"/>
+                                            <table>
+                                                <tr>
+                                                    <th><label for="password">Current password</label></th>
+                                                    <td>
+                                                        <form:password path="oldpassword" />
+                                                        <form:errors path="oldpassword" cssClass="error" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th><label for="password">New password</label></th>
+                                                    <td>
+                                                        <form:password path="password" />
+                                                        <form:errors path="password" cssClass="error" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th><label for="passwordConfirm">New password(Again)</label></th>
+                                                    <td>
+                                                        <form:password path="passwordConfirm" />
+                                                        <form:errors path="passwordConfirm" cssClass="error" />
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <div class="operation">
+                                                <ul class="moreInfo button">
+                                                    <li>
+                                                        <input type="submit" class="input_submit" value="Update" />
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                  </div>
+                                        </form:form>

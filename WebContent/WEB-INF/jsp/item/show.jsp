@@ -704,7 +704,7 @@ body{
 							</div>
 						</div>
 
-						<!--<c:url value="/item/${item.id}/delete" var="itemresourcedelete" />
+						<c:url value="/item/${item.id}/delete" var="itemresourcedelete" />
 						<form:form id="itemDeleteForm" method="post"
 							action="${itemresourcedelete}" />
 						<c:url value="/item/${item.id}/relog" var="relogUrl" />
@@ -721,7 +721,7 @@ body{
 							var="teacherDelCfmUrl" />
 						<form:form id="teacherDelCfmStatusForm"
 							action="${teacherDelCfmUrl}" method="post" />
-						<div id="Center">
+						<!--<div id="Center">
 							<div class="specialop">
 								<fieldset>
 									<legend>Teacher Operations</legend>

@@ -377,7 +377,7 @@ background-color: #F7F7F7;
 }
 
 body{
-	padding-bottom:0px;
+	padding-bottom:55px;
 }
 </style>
 <body id="page_member_profile">
@@ -1097,7 +1097,7 @@ body{
 		</div>
 		<!-- Body -->
 	</div>
-
+<c:import url="../include/footer.jsp"></c:import>
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -1105,5 +1105,4 @@ body{
 
 	});
 </script>
-
 </html>

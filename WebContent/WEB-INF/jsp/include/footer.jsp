@@ -1,25 +1,29 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
-
-
-<div id="Footer">
-    <div id="FooterContainer" style="margin-top:10px">
-            <%--<a target="_blank" href="<c:url value="/privacyPolicy" />">プライバシーポリシー</a>
-            <a target="_blank" href="<c:url value="/userAgreement" />">利用規約</a>
-            --%>
-            <div class="navbar navbar-inverse">
-			<div class="navbar-inner">
-            <div style="float:left">
-            	<a target="_blank" href="<c:url value="/help" />" style="font-size:22px;font-weight:bold;font-family: arial"><img src="<c:url value="/images/help.png" />"/>Help</a>
-            	<a target="_blank" href="http://sites.google.com/site/learning64u/video" style="font-size:22px;font-weight:bold;font-family: arial"><img src="<c:url value="/images/videos.png" />"/>Videos</a>
-            </div>
-            <div style="float:right">
-	            <c:url value='/download/apk' var="downloadapkUrl" />
-	            <a href="javascript:void(window.open('${downloadapkUrl}'))">Download LearningLog for Android</a>&nbsp;&nbsp;
-	            <a href="javascript:void(window.open('http://sites.google.com/site/learning64u/'))">Jump to Learning Log Project-&gt;</a>
-            </div>
-    </div>
-    </div></div>
-</div><!-- Footer -->
+			<style type="text/css">
+				.activeTab{
+					color: #f0ad4e;
+					font-size:27px;
+				}
+				.notActiveTab{
+					color:#999;
+					font-size:27px;
+				}
+				.homeTab{
+					color:white;
+					font-size:25px;
+				}
+			</style>
+<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation" style="height:2%">
+      <!-- We use the fluid option here to avoid overriding the fixed width of a normal container within the narrow content columns. -->
+      <div class="container-fluid">
+		<div class="row">
+		  <div class="col-xs-2 col-md-2"><a class="btn-lg btn-block" style="text-align:center" href="#"><span class="glyphicon glyphicon-map-marker notActiveTab navTab"></span></a></div>
+		  <div class="col-xs-2 col-md-2"><a class="btn-lg btn-block" style="text-align:center" href="http://ll.artsci.kyushu-u.ac.jp/learninglog2"><span class="glyphicon glyphicon-tasks notActiveTab navTab"></span></a></div>
+		  <div class="col-xs-4 col-md-4"><a class="btn-lg btn-block" style="text-align:center;background-color:#e67e22;" href="/LL5/item"><span class="glyphicon glyphicon-home notActiveTab homeTab navTab"></span></a></div>
+		  <div class="col-xs-2 col-md-2"><a class="btn-lg btn-block" style="text-align:center" href="/LL5/quiz"><span class="glyphicon glyphicon-th-large notActiveTab navTab"></span></a></div>
+		  <div class="col-xs-2 col-md-2"><a class="btn-lg btn-block" style="text-align:center" href="/LL5/profile"><span class="glyphicon glyphicon-user notActiveTab navTab"></span></a></div>
+		</div>	
+      </div>
+    </nav>

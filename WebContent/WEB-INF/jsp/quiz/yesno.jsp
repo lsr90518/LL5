@@ -71,7 +71,15 @@
      </c:if>
 </table>
 <div class="SubmitPanel">
-	<input type="submit" class="btn" value="Yes" onclick="fncAnswer(1);return false;"/>
-	<input type="submit" class="btn" value="No" onclick="fncAnswer(0);return false;"/>
-	<input type="button" class="btn" value="No Good" onclick="return fncPass();"/>
+	<div class="row" style="margin:0px;">
+				<div class="col-xs-4 col-md-4 ">
+					<input type="submit" class="btn" value="Yes" onclick="fncAnswer(1);return false;"/>
+				</div>
+				<div class="col-xs-4 col-md-4 ">
+					<input type="submit" class="btn" value="No" onclick="fncAnswer(0);return false;"/>
+				</div>
+				<div class="col-xs-4 col-md-4 ">
+					<input type="button" class="btn" value="No Good" onclick="return fncPass();"/>
+				</div>
+			</div>
 </div>

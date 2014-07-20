@@ -45,10 +45,22 @@
 <c:choose>
 	<c:when test= "${!answered}">
 	    <div class="SubmitPanel" >
-		<input type="submit" class="btn" value="Answer" />
-		<input type="submit" class="btn" value="Too Easy" onclick="return fncEasy();"/>
-		<input type="submit" class="btn" value="Too Difficult" onclick="return fncDifficult();"/>
-		<input type="button" class="btn" value="No Good" onclick="return fncPass();"/>
+			<div class="row" style="margin:0px;">
+				<div class="col-xs-6 col-md-6 ">
+					<input type="submit" class="btn" value="Answer"/>
+				</div>
+				<div class="col-xs-6 col-md-6 ">
+					<input type="submit" class="btn" value="Too Easy" onclick="return fncEasy();"/>
+				</div>
+			</div>
+			<div class="row" style="margin:0px;">
+				<div class="col-xs-6 col-md-6 ">
+					<input type="submit" class="btn" value="Too Difficult" onclick="return fncDifficult();"/>
+				</div>
+				<div class="col-xs-6 col-md-6 ">
+					<input type="button" class="btn" value="No Good" onclick="return fncPass();"/>
+				</div>
+			</div>
 		</div>
 	</c:when>
 </c:choose>

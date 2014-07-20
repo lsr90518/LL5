@@ -153,7 +153,7 @@ background-color: #FAB937;
 	padding-top: 5px;
 	text-align: center;
 }
-.SubmitPanel>input{
+.SubmitPanel>div>div>input{
 	box-shadow:0 1px 3px 0 #888;
 	margin:10px;
 	background-color:#326e99;
@@ -170,7 +170,7 @@ background-color: #FAB937;
 	margin-bottom: 20px;
 }
 .scoreSpan{
-	font-size: 56px;
+	font-size: 30px;
 	color: white;
 	font-weight: bold;
 	margin-bottom: 5px;
@@ -181,9 +181,13 @@ background-color: #FAB937;
 	font-weight: bold;
 	color: #8d9aa5;
 	line-height: 1.6;
+	font-size: 20px;
 }
 .ImageContent{
 	text-align: center;
+}
+.row{
+	margin:0px;
 }
 </style>
   <header class="navbar navbar-default navbar-fixed-top topNav" role="navigation">
@@ -312,9 +316,9 @@ background-color: #FAB937;
 	                        
 	                        <!-- 										map											 -->
 					<div class="contentPanel">
-						<div id="map" style="height: 90px;text-align:center">
+						<div id="map" style="height: 150px;text-align:center">
 							<img
-								src="http://maps.google.com/maps/api/staticmap?size=400x90&sensor=false&center=${quiz.item.itemLat},${quiz.item.itemLng}&zoom=${quiz.item.itemZoom}&mobile=true&markers=${quiz.item.itemLat},${quiz.item.itemLng}" />
+								src="http://maps.google.com/maps/api/staticmap?size=300x150&sensor=false&center=${quiz.item.itemLat},${quiz.item.itemLng}&zoom=${quiz.item.itemZoom}&mobile=true&markers=${quiz.item.itemLat},${quiz.item.itemLng}" />
 						</div>
 
 						<c:if test="${!empty quiz.item.place}">

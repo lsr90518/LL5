@@ -53,6 +53,10 @@
 	</div>
 </nav>
 
+<form id="locationForm" action="location/getPlaceName" method="post">
+	<input type="hidden" name="location" id="locationInput" value="" />
+</form>
+
 <script type="text/javascript">
 	function getWordsByLocation() {
 		if (navigator.geolocation) {
@@ -62,10 +66,10 @@
 		}
 	}
 	function showPosition(position) {
-		var location =  position.coords.longitude;
-		alert(location);
-		$.get("/LL5/location/"+location,function(data){
-			alert(data);
-		});
+		var latitude =  position.coords.latitude;
+		var longitude = position.coords.longitude;
+		$("#locationInput").val(latitude + "," + longitude);
+		
+		$("#locationForm").submit();
 	}
 </script>

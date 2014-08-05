@@ -133,12 +133,23 @@ background-color: #FAB937;
 				</header>
 	<div class="list-group">
 		<c:forEach items="${results}" var="result">
-		 	 <a href="#" class="list-group-item">
+		 	 <a href="#" class="list-group-item placeItem">
 		 	 	<img class="icon-img" src="${result.icon}" alt="...">
 		 	 	<span class="place-name">${result.name}</span><br/>
-		 	 	<span class="type-span">${result.types}</span>
+		 	 	<span class="type-span"><c:forEach items="${result.types}" var="type">${type},</c:forEach></span>
+		 	 	<input type="hidden" class="location-input" value="${result.geometry.location.lat},${result.geometry.location.lng}" />
 		 	 </a>
 		</c:forEach>	
 	</div>
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(".placeItem").click(function(){
+				$(this).children().each(function(){
+					console.log($(this));
+				});
+			});
+		});
+	</script>
 </body>
 </html>

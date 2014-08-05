@@ -1,8 +1,10 @@
 package jp.ac.tokushima_u.is.ll.controller;
 
 import jp.ac.tokushima_u.is.ll.form.LocationForm;
+import jp.ac.tokushima_u.is.ll.form.PlaceForm;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,6 +18,8 @@ import jp.ac.tokushima_u.is.ll.entity.GooglePlacesModel;
 import jp.ac.tokushima_u.is.ll.util.HttpRequest;
 import java.net.URL;  
 import java.util.ArrayList;
+
+import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/location")
 public class LocationBasedController {
@@ -32,11 +36,9 @@ public class LocationBasedController {
         Gson gson = new Gson();
         
         GooglePlacesModel gpm = gson.fromJson(s, GooglePlacesModel.class);
-        
-        System.out.println(gpm.getStatus());
         ArrayList<String> namelist = new ArrayList<String>();
         for(int i = 0;i<gpm.getResults().size();i++){
-        	System.out.println(gpm.getResults().get(i).getName() + "  " + gpm.getResults().get(i).getIcon());
+        	System.out.println(gpm.getResults().get(i).getName() + "  " + gpm.getResults().get(i).getIcon()+gpm.getResults().get(i).getGeometry().getLocation().getLng());
         	
         	namelist.add(gpm.getResults().get(i).getName());
         }
@@ -45,5 +47,12 @@ public class LocationBasedController {
 		
 		return "location/placeList";
 		
+	}
+	
+	@RequestMapping(value="getWordsByLocation", method = RequestMethod.POST)
+	public String getWordsByLocation(@ModelAttribute PlaceForm placeForm, ModelMap model){
+		System.out.println(placeForm.getLocation());
+		
+		return "location/wordsNearby";
 	}
 }

@@ -1,9 +1,7 @@
 package jp.ac.tokushima_u.is.ll.entity;
 
 import java.util.List;
-
 import com.google.gson.annotations.SerializedName;
-
 public class GooglePlacesModel {
 	@SerializedName("html_attributions")
     private List<String> html_attributions;
